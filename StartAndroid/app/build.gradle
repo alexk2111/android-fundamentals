@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.sigmasoftwere.akucherenko.startandroid"
-        minSdk 21
+        minSdk 19
         targetSdk 30
         versionCode 1
         versionName "1.0"
