@@ -66,19 +66,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setResetColor() {
-        if (count > 0)
+        if (count > 0) {
             binding.buttonReset?.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
                     R.color.design_default_color_primary
                 )
             )
-        else
+        } else {
             binding.buttonReset?.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
                     R.color.material_on_background_disabled
                 )
             )
+        }
     }
 }
