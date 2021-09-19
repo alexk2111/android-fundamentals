@@ -13,9 +13,9 @@ private const val KEY_COUNT = "count"
 class MainActivity : AppCompatActivity() {
 
     private val LOG_TAG = MainActivity::class.java.simpleName
-    private var mCount = 0
-    private lateinit var mShowCount: TextView
-    private lateinit var mReset: Button
+    private var count = 0
+    private lateinit var showCount: TextView
+    private lateinit var reset: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,13 +23,13 @@ class MainActivity : AppCompatActivity() {
 
         Log.d(LOG_TAG, "Hello World")
 
-        mCount = savedInstanceState?.getInt(KEY_COUNT, 0)
+        count = savedInstanceState?.getInt(KEY_COUNT, 0)
             ?: getString(R.string.count_initial_value).toInt()
 
-        mShowCount = findViewById(R.id.tv_show_count)
-        mShowCount.text = mCount.toString()
+        showCount = findViewById(R.id.tv_show_count)
+        showCount.text = count.toString()
 
-        mReset = findViewById(R.id.button_reset)
+        reset = findViewById(R.id.button_reset)
         setResetColor()
 
 //        mCount = getString(R.string.count_initial_value).toInt()
@@ -41,33 +41,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun countUp(view: android.view.View) {
-        mCount++
-        mShowCount.text = mCount.toString()
+        count++
+        showCount.text = count.toString()
         setResetColor()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
 
-        outState.putInt(KEY_COUNT, mCount)
+        outState.putInt(KEY_COUNT, count)
     }
 
     fun resetCount(view: android.view.View) {
-        mCount = 0
-        mShowCount.text = mCount.toString()
+        count = 0
+        showCount.text = count.toString()
         setResetColor()
     }
 
     fun setResetColor() {
-        if (mCount > 0)
-            mReset.setBackgroundColor(
+        if (count > 0)
+            reset.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
                     R.color.design_default_color_primary
                 )
             )
         else
-            mReset.setBackgroundColor(
+            reset.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
                     R.color.material_on_background_disabled
