@@ -33,12 +33,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.tvShowCount.text = count.toString()
 
+        binding.buttonToast.setOnClickListener {
+            Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT).show()
+        }
+
         setResetColor()
-
-    }
-
-    fun showToast(view: android.view.View) {
-        Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT).show()
 
     }
 
