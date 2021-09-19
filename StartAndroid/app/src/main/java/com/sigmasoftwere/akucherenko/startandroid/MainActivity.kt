@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        showCount = binding.tvShowCount
+        showCount = binding.showCountTextView
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         showCount.text = count.toString()
 
-        binding.buttonToast.setOnClickListener {
+        binding.toastButton.setOnClickListener {
             Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT).show()
         }
 
@@ -67,14 +67,14 @@ class MainActivity : AppCompatActivity() {
 
     fun setResetColor() {
         if (count > 0) {
-            binding.buttonReset?.setBackgroundColor(
+            binding.resetButton?.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
                     R.color.design_default_color_primary
                 )
             )
         } else {
-            binding.buttonReset?.setBackgroundColor(
+            binding.resetButton?.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
                     R.color.material_on_background_disabled
