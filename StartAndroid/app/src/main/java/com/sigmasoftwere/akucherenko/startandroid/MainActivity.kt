@@ -2,11 +2,10 @@ package com.sigmasoftwere.akucherenko.startandroid
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.TextView
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import com.sigmasoftwere.akucherenko.startandroid.databinding.ActivityMainBinding
 import timber.log.Timber
 
 private const val KEY_COUNT = "count"
@@ -14,12 +13,14 @@ private const val KEY_COUNT = "count"
 class MainActivity : AppCompatActivity() {
 
     private var count = 0
-    private lateinit var showCount: TextView
-    private lateinit var reset: Button
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
@@ -30,10 +31,8 @@ class MainActivity : AppCompatActivity() {
         count = savedInstanceState?.getInt(KEY_COUNT, 0)
             ?: getString(R.string.count_initial_value).toInt()
 
-        showCount = findViewById(R.id.tv_show_count)
-        showCount.text = count.toString()
+        binding.tvShowCount.text = count.toString()
 
-        reset = findViewById(R.id.button_reset)
         setResetColor()
 
     }
@@ -43,9 +42,9 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun countUp(view: android.view.View) {
+    fun countUp(view: View) {
         count++
-        showCount.text = count.toString()
+        binding.tvShowCount.text = count.toString()
         setResetColor()
     }
 
@@ -57,20 +56,20 @@ class MainActivity : AppCompatActivity() {
 
     fun resetCount(view: android.view.View) {
         count = 0
-        showCount.text = count.toString()
+        binding.tvShowCount.text = count.toString()
         setResetColor()
     }
 
     fun setResetColor() {
         if (count > 0)
-            reset.setBackgroundColor(
+            binding.buttonReset?.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
                     R.color.design_default_color_primary
                 )
             )
         else
-            reset.setBackgroundColor(
+            binding.buttonReset?.setBackgroundColor(
                 ContextCompat.getColor(
                     this,
                     R.color.material_on_background_disabled
