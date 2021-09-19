@@ -3,6 +3,8 @@ package com.sigmasoftwere.akucherenko.startandroid
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.sigmasoftwere.akucherenko.startandroid.databinding.ActivityMainBinding
@@ -14,6 +16,8 @@ class MainActivity : AppCompatActivity() {
 
     private var count = 0
     private lateinit var binding: ActivityMainBinding
+    private lateinit var showCount: TextView
+    private lateinit var reset: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        showCount = binding.tvShowCount
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
@@ -31,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         count = savedInstanceState?.getInt(KEY_COUNT, 0)
             ?: getString(R.string.count_initial_value).toInt()
 
-        binding.tvShowCount.text = count.toString()
+        showCount.text = count.toString()
 
         binding.buttonToast.setOnClickListener {
             Toast.makeText(this, R.string.toast_message, Toast.LENGTH_SHORT).show()
@@ -43,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
     fun countUp(view: View) {
         count++
-        binding.tvShowCount.text = count.toString()
+        showCount.text = count.toString()
         setResetColor()
     }
 
@@ -55,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
     fun resetCount(view: android.view.View) {
         count = 0
-        binding.tvShowCount.text = count.toString()
+        showCount.text = count.toString()
         setResetColor()
     }
 
