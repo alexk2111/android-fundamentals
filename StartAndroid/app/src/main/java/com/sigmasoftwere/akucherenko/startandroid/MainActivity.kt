@@ -7,12 +7,12 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import timber.log.Timber
 
 private const val KEY_COUNT = "count"
 
 class MainActivity : AppCompatActivity() {
 
-    private val LOG_TAG = MainActivity::class.java.simpleName
     private var count = 0
     private lateinit var showCount: TextView
     private lateinit var reset: Button
@@ -21,7 +21,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        Log.d(LOG_TAG, "Hello World")
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
+
+        Timber.d("Hello World")
 
         count = savedInstanceState?.getInt(KEY_COUNT, 0)
             ?: getString(R.string.count_initial_value).toInt()
@@ -32,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         reset = findViewById(R.id.button_reset)
         setResetColor()
 
-//        mCount = getString(R.string.count_initial_value).toInt()
     }
 
     fun showToast(view: android.view.View) {
