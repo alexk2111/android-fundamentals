@@ -5,18 +5,23 @@ import android.os.Bundle
 import android.util.Log
 import android.content.Intent
 import android.widget.EditText
+import com.sigmasoftwere.akucherenko.twoactivities.databinding.ActivityMainBinding
 import timber.log.Timber
 
 const val EXTRA_MESSAGE = "com.sigmasoftwere.akucherenko.twoactivities.extra.MESSAGE"
 
 class MainActivity : AppCompatActivity() {
     private lateinit var messageEditText: EditText
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_main)
-        messageEditText = findViewById(R.id.messageEditText)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+
+        messageEditText = binding.messageEditText
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
