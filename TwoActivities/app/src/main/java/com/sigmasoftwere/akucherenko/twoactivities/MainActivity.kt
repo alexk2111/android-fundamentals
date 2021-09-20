@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     fun launchSecondActivity(view: android.view.View) {
         Timber.d("Button clicked!")
         val intent = Intent(this, SecondActivity::class.java)
-        val message = messageEditText.getText().toString()
+        val message = messageEditText.text.toString()
         intent.putExtra(EXTRA_MESSAGE, message)
         startActivity(intent)
     }

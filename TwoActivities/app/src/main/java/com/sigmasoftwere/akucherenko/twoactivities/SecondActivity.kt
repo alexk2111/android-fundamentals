@@ -25,7 +25,7 @@ class SecondActivity : AppCompatActivity() {
     }
 
     fun launchMainActivity(view: android.view.View) {
-        val reply = reply.getText().toString()
+        val reply = reply.text.toString()
         val replyIntent = Intent()
         replyIntent.putExtra(EXTRA_REPLY, reply)
         setResult(RESULT_OK,replyIntent)
