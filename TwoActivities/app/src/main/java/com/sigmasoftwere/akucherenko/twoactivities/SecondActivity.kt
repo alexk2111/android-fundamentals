@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.TextView
 
-const val  EXTRA_REPLY = "com.sigmasoftwere.akucherenko.twoactivities.extra.REPLY"
+const val EXTRA_REPLY = "com.sigmasoftwere.akucherenko.twoactivities.extra.REPLY"
 
 class SecondActivity : AppCompatActivity() {
 
