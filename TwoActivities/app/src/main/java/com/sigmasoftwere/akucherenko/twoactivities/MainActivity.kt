@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        messageEditText = findViewById(R.id.editText_main)
+        messageEditText = findViewById(R.id.messageEditText)
     }
 
     fun launchSecondActivity(view: android.view.View) {

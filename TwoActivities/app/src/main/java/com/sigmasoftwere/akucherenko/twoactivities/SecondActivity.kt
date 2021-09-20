@@ -18,10 +18,10 @@ class SecondActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
 
         val message = intent.getStringExtra(EXTRA_MESSAGE)
-        messageText = findViewById(R.id.text_message)
+        messageText = findViewById(R.id.receivedMessageTextView)
         messageText.text = message
 
-        reply = findViewById(R.id.editText_second)
+        reply = findViewById(R.id.answerMessageEditText)
     }
 
     fun launchMainActivity(view: android.view.View) {
