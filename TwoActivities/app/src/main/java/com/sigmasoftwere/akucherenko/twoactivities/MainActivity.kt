@@ -2,7 +2,6 @@ package com.sigmasoftwere.akucherenko.twoactivities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.content.Intent
 import android.widget.EditText
 import com.sigmasoftwere.akucherenko.twoactivities.databinding.ActivityMainBinding
