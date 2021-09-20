@@ -17,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     private var count = 0
     private lateinit var binding: ActivityMainBinding
     private lateinit var showCount: TextView
-    private lateinit var reset: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         setResetColor()
     }
 
-    fun setResetColor() {
+    private fun setResetColor() {
         if (count > 0) {
             binding.resetButton?.setBackgroundColor(
                 ContextCompat.getColor(
