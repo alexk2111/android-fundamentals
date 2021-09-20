@@ -8,21 +8,22 @@ import android.widget.EditText
 
 
 const val EXTRA_MESSAGE = "com.sigmasoftwere.akucherenko.twoactivities.extra.MESSAGE"
+
 class MainActivity : AppCompatActivity() {
     private val LOG_TAG = MainActivity::class.java.simpleName
-    private lateinit var mMessageEditText: EditText
+    private lateinit var messageEditText: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
-        mMessageEditText = findViewById(R.id.editText_main)
+        messageEditText = findViewById(R.id.editText_main)
     }
 
     fun launchSecondActivity(view: android.view.View) {
         Log.d(LOG_TAG, "Button clicked!")
         val intent = Intent(this, SecondActivity::class.java)
-        val message = mMessageEditText.getText().toString()
+        val message = messageEditText.getText().toString()
         intent.putExtra(EXTRA_MESSAGE, message)
         startActivity(intent)
     }
