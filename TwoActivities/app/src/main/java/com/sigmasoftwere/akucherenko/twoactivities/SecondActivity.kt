@@ -11,7 +11,8 @@ const val  EXTRA_REPLY = "com.sigmasoftwere.akucherenko.twoactivities.extra.REPL
 class SecondActivity : AppCompatActivity() {
 
     private lateinit var messageText: TextView
-    private lateinit var mReply: EditText
+    private lateinit var reply: EditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
@@ -20,11 +21,11 @@ class SecondActivity : AppCompatActivity() {
         messageText = findViewById(R.id.text_message)
         messageText.text = message
 
-        mReply = findViewById(R.id.editText_second)
+        reply = findViewById(R.id.editText_second)
     }
 
     fun launchMainActivity(view: android.view.View) {
-        val reply = mReply.getText().toString()
+        val reply = reply.getText().toString()
         val replyIntent = Intent()
         replyIntent.putExtra(EXTRA_REPLY, reply)
         setResult(RESULT_OK,replyIntent)
