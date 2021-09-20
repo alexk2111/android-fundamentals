@@ -6,7 +6,6 @@ import android.util.Log
 import android.content.Intent
 import android.widget.EditText
 
-
 const val EXTRA_MESSAGE = "com.sigmasoftwere.akucherenko.twoactivities.extra.MESSAGE"
 
 class MainActivity : AppCompatActivity() {
