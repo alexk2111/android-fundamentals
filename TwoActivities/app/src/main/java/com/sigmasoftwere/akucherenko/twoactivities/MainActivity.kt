@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.content.Intent
 import android.widget.EditText
+import android.widget.TextView
 import com.sigmasoftwere.akucherenko.twoactivities.databinding.ActivityMainBinding
 import timber.log.Timber
 
@@ -12,6 +13,10 @@ const val EXTRA_MESSAGE = "com.sigmasoftwere.akucherenko.twoactivities.extra.MES
 class MainActivity : AppCompatActivity() {
     private lateinit var messageEditText: EditText
     private lateinit var binding: ActivityMainBinding
+    private lateinit var replyHeadMessageTextView: TextView
+    private lateinit var replyTextMessageTextView: TextView
+
+    public val TEXT_REQUEST: Int = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         messageEditText = binding.messageEditText
+        replyHeadMessageTextView = binding.replyHeaderMessage
+        replyTextMessageTextView = binding.replyTextMessage
 
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
@@ -33,6 +40,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, SecondActivity::class.java)
         val message = messageEditText.text.toString()
         intent.putExtra(EXTRA_MESSAGE, message)
-        startActivity(intent)
+//        startActivity(intent)
+        startActivityForResult(intent, TEXT_REQUEST)
     }
 }
