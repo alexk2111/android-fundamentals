@@ -75,6 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onOperationClick"
                 android:text="@string/divide" />
         </LinearLayout>
 
@@ -112,6 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onOperationClick"
                 android:text="@string/times" />
         </LinearLayout>
 
@@ -149,6 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onOperationClick"
                 android:text="@string/minus" />
         </LinearLayout>
 
@@ -178,6 +181,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onOperationClick"
                 android:text="@string/plus" />
 
             <Button
@@ -185,6 +189,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:onClick="onEqualsClick"
                 android:text="@string/equals" />
         </LinearLayout>
     </LinearLayout>

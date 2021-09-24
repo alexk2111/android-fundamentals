@@ -11,11 +11,12 @@ private lateinit var binding: ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private val resultCalculate: Double = 0.0
     private lateinit var resultTextView: TextView
     private lateinit var operationTextView: TextView
+    private var resultCalculate: Double = 0.0
+    private var operation: Double = 0.0
     private var lastOperation: String = ""
-    private var operation = 0
+    private var lastButton: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,21 +31,85 @@ class MainActivity : AppCompatActivity() {
         resultTextView.text = ""
         operationTextView.text = ""
         lastOperation = "="
-        operation = 0
+        operation = 0.0
+        resultCalculate = 0.0
     }
 
     fun onNumberClick(view: android.view.View) {
         val button: Button = view as Button
+        if (lastButton != "number") {
+                resultTextView.text = ""
+        }
         resultTextView.text = resultTextView.text.toString() + button.text.toString()
+        lastButton = "number"
     }
 
     fun onDotClick(view: android.view.View) {
-
-//        Toast.makeText(this,
-//            resultTextView.text.toString().lastIndexOf(".").toString(),
-//            Toast.LENGTH_SHORT ).show()
-        if (resultTextView.text.toString().lastIndexOf(".") == -1) {
-            resultTextView.text = resultTextView.text.toString() + "."
+        if (lastButton != "number") resultTextView.text = ""
+        if (resultTextView.text.toString().lastIndexOf(".") != -1) {
+            return
         }
+        if (resultTextView.text.toString() == "") {
+            resultTextView.text = resultTextView.text.toString() + "0"
+        }
+        resultTextView.text = resultTextView.text.toString() + "."
+        operation = resultTextView.text.toString().toDouble()
+        lastButton = "number"
+    }
+
+    fun onOperationClick(view: android.view.View) {
+        val button: Button = view as Button
+        val currentOperation = button.text.toString()
+        if (lastOperation == "=") {
+            operationTextView.text = resultTextView.text
+            lastOperation = currentOperation
+            lastButton = "operation"
+            return
+        }
+        Toast.makeText(this, lastOperation, Toast.LENGTH_SHORT).show()
+        performOperation(currentOperation)
+        lastButton = "operation"
+    }
+
+    fun onEqualsClick(view: android.view.View) {
+        val button: Button = view as Button
+        val currentOperation = button.text.toString()
+        if (lastOperation == "=") return
+
+        val operationTextViewTemp = operationTextView.text.toString() +
+                lastOperation + resultTextView.text + currentOperation
+        performOperation(currentOperation)
+        operationTextView.text = operationTextViewTemp
+        lastOperation = currentOperation
+        lastButton = "operation"
+    }
+
+    private fun performOperation(currentOperation: String) {
+        if (lastOperation == "/" && resultTextView.text.toString().toDouble() == 0.0) {
+            lastOperation = "="
+            resultTextView.text = "Error"
+            operationTextView.text = ""
+            return
+        }
+        when (lastOperation) {
+            "/" ->
+                operationTextView.text =
+                    (operationTextView.text.toString().toDouble() / resultTextView.text.toString()
+                        .toDouble()).toString()
+            "*" ->
+                operationTextView.text =
+                    (operationTextView.text.toString().toDouble() * resultTextView.text.toString()
+                        .toDouble()).toString()
+            "-" ->
+                operationTextView.text =
+                    (operationTextView.text.toString().toDouble() - resultTextView.text.toString()
+                        .toDouble()).toString()
+            "+" ->
+                operationTextView.text =
+                    (operationTextView.text.toString().toDouble() + resultTextView.text.toString()
+                        .toDouble()).toString()
+        }
+        resultTextView.text = operationTextView.text
+        lastOperation = currentOperation
     }
 }
