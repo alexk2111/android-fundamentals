@@ -1,10 +1,10 @@
 package com.sigmasoftwere.akucherenko.calculator
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import com.sigmasoftwere.akucherenko.calculator.databinding.ActivityMainBinding
 
 private lateinit var binding: ActivityMainBinding
@@ -37,14 +37,20 @@ class MainActivity : AppCompatActivity() {
 
     fun onNumberClick(view: android.view.View) {
         val button: Button = view as Button
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            resultTextView.setTextAppearance(R.style.normalStyle)
+        }
         if (lastButton != "number") {
-                resultTextView.text = ""
+            resultTextView.text = ""
         }
         resultTextView.text = resultTextView.text.toString() + button.text.toString()
         lastButton = "number"
     }
 
     fun onDotClick(view: android.view.View) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            resultTextView.setTextAppearance(R.style.normalStyle)
+        }
         if (lastButton != "number") resultTextView.text = ""
         if (resultTextView.text.toString().lastIndexOf(".") != -1) {
             return
@@ -55,18 +61,23 @@ class MainActivity : AppCompatActivity() {
         resultTextView.text = resultTextView.text.toString() + "."
         operation = resultTextView.text.toString().toDouble()
         lastButton = "number"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            resultTextView.setTextAppearance(R.style.normalStyle)
+        }
     }
 
     fun onOperationClick(view: android.view.View) {
         val button: Button = view as Button
         val currentOperation = button.text.toString()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            resultTextView.setTextAppearance(R.style.normalStyle)
+        }
         if (lastOperation == "=") {
             operationTextView.text = resultTextView.text
             lastOperation = currentOperation
             lastButton = "operation"
             return
         }
-        Toast.makeText(this, lastOperation, Toast.LENGTH_SHORT).show()
         performOperation(currentOperation)
         lastButton = "operation"
     }
@@ -74,7 +85,15 @@ class MainActivity : AppCompatActivity() {
     fun onEqualsClick(view: android.view.View) {
         val button: Button = view as Button
         val currentOperation = button.text.toString()
-        if (lastOperation == "=") return
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            resultTextView.setTextAppearance(R.style.equalsStyle)
+        }
+
+        if (lastOperation == "=") {
+            lastButton = "operation"
+            return
+        }
 
         val operationTextViewTemp = operationTextView.text.toString() +
                 lastOperation + resultTextView.text + currentOperation
@@ -86,6 +105,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun performOperation(currentOperation: String) {
         if (lastOperation == "/" && resultTextView.text.toString().toDouble() == 0.0) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                resultTextView.setTextAppearance(R.style.errorStyle)
+            }
             lastOperation = "="
             resultTextView.text = "Error"
             operationTextView.text = ""
