@@ -3,6 +3,9 @@ package com.sigmasoftwere.akucherenko.calculator
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
 import com.sigmasoftwere.akucherenko.calculator.databinding.ActivityMainBinding
@@ -36,6 +39,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onNumberClick(view: android.view.View) {
+        animation(view)
         val button: Button = view as Button
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             resultTextView.setTextAppearance(R.style.normalStyle)
@@ -48,6 +52,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onDotClick(view: android.view.View) {
+        animation(view)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             resultTextView.setTextAppearance(R.style.normalStyle)
         }
@@ -69,6 +74,7 @@ class MainActivity : AppCompatActivity() {
     fun onOperationClick(view: android.view.View) {
         val button: Button = view as Button
         val currentOperation = button.text.toString()
+        animation(view)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             resultTextView.setTextAppearance(R.style.normalStyle)
         }
@@ -85,6 +91,10 @@ class MainActivity : AppCompatActivity() {
     fun onEqualsClick(view: android.view.View) {
         val button: Button = view as Button
         val currentOperation = button.text.toString()
+        animation(view)
+        val animation: Animation =
+            AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in)
+        resultTextView.startAnimation(animation)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             resultTextView.setTextAppearance(R.style.equalsStyle)
@@ -101,6 +111,7 @@ class MainActivity : AppCompatActivity() {
         operationTextView.text = operationTextViewTemp
         lastOperation = currentOperation
         lastButton = "operation"
+
     }
 
     private fun performOperation(currentOperation: String) {
@@ -133,5 +144,12 @@ class MainActivity : AppCompatActivity() {
         }
         resultTextView.text = operationTextView.text
         lastOperation = currentOperation
+    }
+
+    private fun animation(view: View) {
+        val animation: Animation =
+            AnimationUtils.loadAnimation(applicationContext, R.anim.zoom_in)
+        view.startAnimation(animation)
+
     }
 }

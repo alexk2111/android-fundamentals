@@ -49,6 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onNumberClick"
                 android:text="@string/_7" />
 
@@ -57,6 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onNumberClick"
                 android:text="@string/_8" />
 
@@ -65,6 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onNumberClick"
                 android:text="@string/_9" />
 
@@ -73,6 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onOperationClick"
                 android:text="@string/divide" />
         </LinearLayout>
@@ -87,6 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onNumberClick"
                 android:text="@string/_4" />
 
@@ -95,6 +100,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onNumberClick"
                 android:text="@string/_5" />
 
@@ -103,6 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onNumberClick"
                 android:text="@string/_6" />
 
@@ -111,6 +118,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onOperationClick"
                 android:text="@string/times" />
         </LinearLayout>
@@ -125,6 +133,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onNumberClick"
                 android:text="@string/_1" />
 
@@ -133,6 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onNumberClick"
                 android:text="@string/_2" />
 
@@ -141,6 +151,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onNumberClick"
                 android:text="@string/_3" />
 
@@ -149,6 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onOperationClick"
                 android:text="@string/minus" />
         </LinearLayout>
@@ -163,6 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onDotClick"
                 android:text="@string/dot" />
 
@@ -171,6 +184,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onNumberClick"
                 android:text="@string/_0" />
 
@@ -179,6 +193,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onOperationClick"
                 android:text="@string/plus" />
 
@@ -187,6 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:layout_margin="5dp"
                 android:onClick="onEqualsClick"
                 android:text="@string/equals" />
         </LinearLayout>
