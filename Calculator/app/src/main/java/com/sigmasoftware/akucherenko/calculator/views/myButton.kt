@@ -1,12 +1,9 @@
-package com.sigmasoftwere.akucherenko.calculator.views
+package com.sigmasoftware.akucherenko.calculator.views
 
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.widget.Button
 import androidx.appcompat.widget.AppCompatButton
-import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getColor
 
 class myButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -27,6 +24,8 @@ class myButton @JvmOverloads constructor(
         super.onDraw(canvas)
 
         val s = super.getText().toString()
+
+        canvas.drawColor(Color.TRANSPARENT)
 
         paint.style = Paint.Style.FILL
         paint.color = Color.BLUE

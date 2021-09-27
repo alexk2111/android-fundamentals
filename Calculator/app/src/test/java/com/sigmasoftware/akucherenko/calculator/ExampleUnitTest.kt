@@ -1,4 +1,4 @@
-package com.sigmasoftwere.akucherenko.calculator
+package com.sigmasoftware.akucherenko.calculator
 
 import org.junit.Test
 

@@ -1,4 +1,4 @@
-package com.sigmasoftwere.akucherenko.calculator
+package com.sigmasoftware.akucherenko.calculator
 
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -8,11 +8,15 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.TextView
-import com.sigmasoftwere.akucherenko.calculator.databinding.ActivityMainBinding
+import com.sigmasoftware.akucherenko.calculator.databinding.ActivityMainBinding
 
 private lateinit var binding: ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private val TYPE_BUTTON_NUMBER: String = "number"
+    private val TYPE_BUTTON_OPERATION: String = "operation"
+    private val ERROR_RESULT: String = "Error"
 
     private lateinit var resultTextView: TextView
     private lateinit var operationTextView: TextView
@@ -33,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         resultTextView.text = ""
         operationTextView.text = ""
-        lastOperation = "="
+        lastOperation = binding.buttonEquals.text.toString()
         operation = 0.0
         resultCalculate = 0.0
     }
@@ -48,12 +52,12 @@ class MainActivity : AppCompatActivity() {
             resultTextView.setTextAppearance(R.style.normalStyle)
         }
 
-        if (lastButton != "number") {
+        if (lastButton != TYPE_BUTTON_NUMBER) {
             resultTextView.text = ""
         }
 
         resultTextView.text = resultTextView.text.toString() + button.text.toString()
-        lastButton = "number"
+        lastButton = TYPE_BUTTON_NUMBER
 
     }
 
@@ -65,19 +69,19 @@ class MainActivity : AppCompatActivity() {
             resultTextView.setTextAppearance(R.style.normalStyle)
         }
 
-        if (lastButton != "number") resultTextView.text = ""
+        if (lastButton != TYPE_BUTTON_NUMBER) resultTextView.text = ""
 
         if (resultTextView.text.toString().lastIndexOf(".") != -1) {
             return
         }
 
-        if (resultTextView.text.toString() == "") {
+        if (resultTextView.text.toString().isEmpty()) {
             resultTextView.text = resultTextView.text.toString() + "0"
         }
 
         resultTextView.text = resultTextView.text.toString() + "."
         operation = resultTextView.text.toString().toDouble()
-        lastButton = "number"
+        lastButton = TYPE_BUTTON_NUMBER
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             resultTextView.setTextAppearance(R.style.normalStyle)
@@ -96,16 +100,17 @@ class MainActivity : AppCompatActivity() {
             resultTextView.setTextAppearance(R.style.normalStyle)
         }
 
-        if (lastOperation == "=") {
+//        if (lastOperation == "=") {
+        if (lastOperation == binding.buttonEquals.text.toString()) {
             operationTextView.text = resultTextView.text
             lastOperation = currentOperation
-            lastButton = "operation"
+            lastButton = TYPE_BUTTON_OPERATION
             return
         }
 
         performOperation(currentOperation)
 
-        lastButton = "operation"
+        lastButton = TYPE_BUTTON_OPERATION
 
     }
 
@@ -124,8 +129,9 @@ class MainActivity : AppCompatActivity() {
             resultTextView.setTextAppearance(R.style.equalsStyle)
         }
 
-        if (lastOperation == "=") {
-            lastButton = "operation"
+//        if (lastOperation == "=") {
+        if (lastOperation == binding.buttonEquals.text.toString()) {
+            lastButton = TYPE_BUTTON_OPERATION
             return
         }
 
@@ -136,19 +142,29 @@ class MainActivity : AppCompatActivity() {
 
         operationTextView.text = operationTextViewTemp
         lastOperation = currentOperation
-        lastButton = "operation"
+        lastButton = TYPE_BUTTON_OPERATION
 
     }
 
     private fun performOperation(currentOperation: String) {
 
-        if (lastOperation == "/" && resultTextView.text.toString().toDouble() == 0.0) {
+        if (operationTextView.text.toString().isEmpty()  || operationTextView.text.toString() == ERROR_RESULT) {
+            operationTextView.text = "0"
+        }
+        if (resultTextView.text.toString().isEmpty() || resultTextView.text.toString() == ERROR_RESULT) {
+            resultTextView.text = "0"
+        }
+
+//        if (lastOperation == "/" && resultTextView.text.toString().toDouble() == 0.0) {
+        if (lastOperation == binding.buttonDivide.text.toString()
+            && resultTextView.text.toString().toDouble() == 0.0
+        ) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 resultTextView.setTextAppearance(R.style.errorStyle)
             }
 
-            lastOperation = "="
-            resultTextView.text = "Error"
+            lastOperation = binding.buttonEquals.text.toString() // = "=
+            resultTextView.text = ERROR_RESULT
             operationTextView.text = ""
             return
         }
