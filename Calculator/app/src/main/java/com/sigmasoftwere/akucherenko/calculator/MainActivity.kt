@@ -39,59 +39,83 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onNumberClick(view: android.view.View) {
+
         animation(view)
+
         val button: Button = view as Button
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             resultTextView.setTextAppearance(R.style.normalStyle)
         }
+
         if (lastButton != "number") {
             resultTextView.text = ""
         }
+
         resultTextView.text = resultTextView.text.toString() + button.text.toString()
         lastButton = "number"
+
     }
 
     fun onDotClick(view: android.view.View) {
+
         animation(view)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             resultTextView.setTextAppearance(R.style.normalStyle)
         }
+
         if (lastButton != "number") resultTextView.text = ""
+
         if (resultTextView.text.toString().lastIndexOf(".") != -1) {
             return
         }
+
         if (resultTextView.text.toString() == "") {
             resultTextView.text = resultTextView.text.toString() + "0"
         }
+
         resultTextView.text = resultTextView.text.toString() + "."
         operation = resultTextView.text.toString().toDouble()
         lastButton = "number"
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             resultTextView.setTextAppearance(R.style.normalStyle)
         }
+
     }
 
     fun onOperationClick(view: android.view.View) {
+
         val button: Button = view as Button
         val currentOperation = button.text.toString()
+
         animation(view)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             resultTextView.setTextAppearance(R.style.normalStyle)
         }
+
         if (lastOperation == "=") {
             operationTextView.text = resultTextView.text
             lastOperation = currentOperation
             lastButton = "operation"
             return
         }
+
         performOperation(currentOperation)
+
         lastButton = "operation"
+
     }
 
     fun onEqualsClick(view: android.view.View) {
+
         val button: Button = view as Button
         val currentOperation = button.text.toString()
+
         animation(view)
+
         val animation: Animation =
             AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in)
         resultTextView.startAnimation(animation)
@@ -107,7 +131,9 @@ class MainActivity : AppCompatActivity() {
 
         val operationTextViewTemp = operationTextView.text.toString() +
                 lastOperation + resultTextView.text + currentOperation
+
         performOperation(currentOperation)
+
         operationTextView.text = operationTextViewTemp
         lastOperation = currentOperation
         lastButton = "operation"
@@ -115,15 +141,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun performOperation(currentOperation: String) {
+
         if (lastOperation == "/" && resultTextView.text.toString().toDouble() == 0.0) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 resultTextView.setTextAppearance(R.style.errorStyle)
             }
+
             lastOperation = "="
             resultTextView.text = "Error"
             operationTextView.text = ""
             return
         }
+
         when (lastOperation) {
             "/" ->
                 operationTextView.text =
@@ -142,14 +171,18 @@ class MainActivity : AppCompatActivity() {
                     (operationTextView.text.toString().toDouble() + resultTextView.text.toString()
                         .toDouble()).toString()
         }
+
         resultTextView.text = operationTextView.text
         lastOperation = currentOperation
+
     }
 
     private fun animation(view: View) {
+
         val animation: Animation =
             AnimationUtils.loadAnimation(applicationContext, R.anim.zoom_in)
         view.startAnimation(animation)
 
     }
+
 }

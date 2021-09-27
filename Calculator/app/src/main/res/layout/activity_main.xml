@@ -44,7 +44,7 @@
             android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/button7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 android:onClick="onNumberClick"
                 android:text="@string/_7" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/button8"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                 android:onClick="onNumberClick"
                 android:text="@string/_8" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/button9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
                 android:onClick="onNumberClick"
                 android:text="@string/_9" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/buttonDivide"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,7 +86,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/button4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
                 android:onClick="onNumberClick"
                 android:text="@string/_4" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/button5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
                 android:onClick="onNumberClick"
                 android:text="@string/_5" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/button6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -113,7 +113,7 @@
                 android:onClick="onNumberClick"
                 android:text="@string/_6" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/buttonTimes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
                 android:onClick="onNumberClick"
                 android:text="@string/_1" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -146,7 +146,7 @@
                 android:onClick="onNumberClick"
                 android:text="@string/_2" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/button3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -155,7 +155,7 @@
                 android:onClick="onNumberClick"
                 android:text="@string/_3" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/buttonMinus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -170,7 +170,7 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/buttonDot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -179,7 +179,7 @@
                 android:onClick="onDotClick"
                 android:text="@string/dot" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/button0"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -188,7 +188,7 @@
                 android:onClick="onNumberClick"
                 android:text="@string/_0" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/buttonPlus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -197,7 +197,7 @@
                 android:onClick="onOperationClick"
                 android:text="@string/plus" />
 
-            <Button
+            <com.sigmasoftwere.akucherenko.calculator.views.myButton
                 android:id="@+id/buttonEquals"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
