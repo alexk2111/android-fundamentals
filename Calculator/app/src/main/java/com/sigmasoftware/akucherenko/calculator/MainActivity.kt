@@ -18,10 +18,15 @@ class MainActivity : AppCompatActivity() {
     private val TYPE_BUTTON_OPERATION: String = "operation"
     private val ERROR_RESULT: String = "Error"
 
+    private val LAST_BUTTON_STATE_KEY = "BUTTON_STATE"
+    private val LAST_OPERATION_STATE_KEY = "OPERATION_STATE"
+    private val RESULT_TEXT_VIEW_STATE_KEY = "RESULT_TEXT_VIEW_STATE"
+    private val OPERATION_TEXT_VIEW_STATE_KEY = "OPERATION_TEXT_VIEW_STATE"
+
+
     private lateinit var resultTextView: TextView
     private lateinit var operationTextView: TextView
-    private var resultCalculate: Double = 0.0
-    private var operation: Double = 0.0
+
     private var lastOperation: String = ""
     private var lastButton: String = ""
 
@@ -38,8 +43,25 @@ class MainActivity : AppCompatActivity() {
         resultTextView.text = ""
         operationTextView.text = ""
         lastOperation = binding.buttonEquals.text.toString()
-        operation = 0.0
-        resultCalculate = 0.0
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString(LAST_BUTTON_STATE_KEY, lastButton)
+        outState.putString(LAST_OPERATION_STATE_KEY, lastOperation)
+        outState.putString(RESULT_TEXT_VIEW_STATE_KEY, resultTextView.text.toString())
+        outState.putString(OPERATION_TEXT_VIEW_STATE_KEY, operationTextView.text.toString())
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        lastButton = savedInstanceState.getString(LAST_BUTTON_STATE_KEY, TYPE_BUTTON_OPERATION)
+        lastOperation =
+            savedInstanceState.getString(LAST_OPERATION_STATE_KEY, LAST_OPERATION_STATE_KEY)
+        resultTextView.text = savedInstanceState.getString(RESULT_TEXT_VIEW_STATE_KEY)
+        operationTextView.text = savedInstanceState.getString(OPERATION_TEXT_VIEW_STATE_KEY)
+
     }
 
     fun onNumberClick(view: android.view.View) {
@@ -80,7 +102,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         resultTextView.text = resultTextView.text.toString() + "."
-        operation = resultTextView.text.toString().toDouble()
         lastButton = TYPE_BUTTON_NUMBER
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -100,7 +121,6 @@ class MainActivity : AppCompatActivity() {
             resultTextView.setTextAppearance(R.style.normalStyle)
         }
 
-//        if (lastOperation == "=") {
         if (lastOperation == binding.buttonEquals.text.toString()) {
             operationTextView.text = resultTextView.text
             lastOperation = currentOperation
@@ -129,7 +149,6 @@ class MainActivity : AppCompatActivity() {
             resultTextView.setTextAppearance(R.style.equalsStyle)
         }
 
-//        if (lastOperation == "=") {
         if (lastOperation == binding.buttonEquals.text.toString()) {
             lastButton = TYPE_BUTTON_OPERATION
             return
@@ -148,14 +167,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun performOperation(currentOperation: String) {
 
-        if (operationTextView.text.toString().isEmpty()  || operationTextView.text.toString() == ERROR_RESULT) {
+        if (operationTextView.text.toString()
+                .isEmpty() || operationTextView.text.toString() == ERROR_RESULT
+        ) {
             operationTextView.text = "0"
         }
-        if (resultTextView.text.toString().isEmpty() || resultTextView.text.toString() == ERROR_RESULT) {
+        if (resultTextView.text.toString()
+                .isEmpty() || resultTextView.text.toString() == ERROR_RESULT
+        ) {
             resultTextView.text = "0"
         }
 
-//        if (lastOperation == "/" && resultTextView.text.toString().toDouble() == 0.0) {
         if (lastOperation == binding.buttonDivide.text.toString()
             && resultTextView.text.toString().toDouble() == 0.0
         ) {
@@ -163,7 +185,7 @@ class MainActivity : AppCompatActivity() {
                 resultTextView.setTextAppearance(R.style.errorStyle)
             }
 
-            lastOperation = binding.buttonEquals.text.toString() // = "=
+            lastOperation = binding.buttonEquals.text.toString()
             resultTextView.text = ERROR_RESULT
             operationTextView.text = ""
             return
