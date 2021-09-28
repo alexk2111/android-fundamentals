@@ -17,18 +17,23 @@ class MainActivity : AppCompatActivity() {
     private val TYPE_BUTTON_NUMBER: String = "number"
     private val TYPE_BUTTON_OPERATION: String = "operation"
     private val ERROR_RESULT: String = "Error"
+    private val ZERO: String = "0"
+    private val EMPTY_VALUE = ""
+    private val OPERATION_PLUS = "+"
+    private val OPERATION_MINUS = "-"
+    private val OPERATION_TIMES = "*"
+    private val OPERATION_DIVIDE = "/"
 
     private val LAST_BUTTON_STATE_KEY = "BUTTON_STATE"
     private val LAST_OPERATION_STATE_KEY = "OPERATION_STATE"
     private val RESULT_TEXT_VIEW_STATE_KEY = "RESULT_TEXT_VIEW_STATE"
     private val OPERATION_TEXT_VIEW_STATE_KEY = "OPERATION_TEXT_VIEW_STATE"
 
-
     private lateinit var resultTextView: TextView
     private lateinit var operationTextView: TextView
 
-    private var lastOperation: String = ""
-    private var lastButton: String = ""
+    private var lastOperation: String = EMPTY_VALUE
+    private var lastButton: String = EMPTY_VALUE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +45,14 @@ class MainActivity : AppCompatActivity() {
         resultTextView = binding.resultCalculate
         operationTextView = binding.operationCalculate
 
-        resultTextView.text = ""
-        operationTextView.text = ""
+        resultTextView.text = EMPTY_VALUE
+        operationTextView.text = EMPTY_VALUE
         lastOperation = binding.buttonEquals.text.toString()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
+
         outState.putString(LAST_BUTTON_STATE_KEY, lastButton)
         outState.putString(LAST_OPERATION_STATE_KEY, lastOperation)
         outState.putString(RESULT_TEXT_VIEW_STATE_KEY, resultTextView.text.toString())
@@ -75,7 +81,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (lastButton != TYPE_BUTTON_NUMBER) {
-            resultTextView.text = ""
+            resultTextView.text = EMPTY_VALUE
         }
 
         resultTextView.text = resultTextView.text.toString() + button.text.toString()
@@ -91,14 +97,14 @@ class MainActivity : AppCompatActivity() {
             resultTextView.setTextAppearance(R.style.normalStyle)
         }
 
-        if (lastButton != TYPE_BUTTON_NUMBER) resultTextView.text = ""
+        if (lastButton != TYPE_BUTTON_NUMBER) resultTextView.text = EMPTY_VALUE
 
         if (resultTextView.text.toString().lastIndexOf(".") != -1) {
             return
         }
 
         if (resultTextView.text.toString().isEmpty()) {
-            resultTextView.text = resultTextView.text.toString() + "0"
+            resultTextView.text = resultTextView.text.toString() + ZERO
         }
 
         resultTextView.text = resultTextView.text.toString() + "."
@@ -170,12 +176,12 @@ class MainActivity : AppCompatActivity() {
         if (operationTextView.text.toString()
                 .isEmpty() || operationTextView.text.toString() == ERROR_RESULT
         ) {
-            operationTextView.text = "0"
+            operationTextView.text = ZERO
         }
         if (resultTextView.text.toString()
                 .isEmpty() || resultTextView.text.toString() == ERROR_RESULT
         ) {
-            resultTextView.text = "0"
+            resultTextView.text = ZERO
         }
 
         if (lastOperation == binding.buttonDivide.text.toString()
@@ -187,24 +193,24 @@ class MainActivity : AppCompatActivity() {
 
             lastOperation = binding.buttonEquals.text.toString()
             resultTextView.text = ERROR_RESULT
-            operationTextView.text = ""
+            operationTextView.text = EMPTY_VALUE
             return
         }
 
         when (lastOperation) {
-            "/" ->
+            OPERATION_DIVIDE ->
                 operationTextView.text =
                     (operationTextView.text.toString().toDouble() / resultTextView.text.toString()
                         .toDouble()).toString()
-            "*" ->
+            OPERATION_TIMES ->
                 operationTextView.text =
                     (operationTextView.text.toString().toDouble() * resultTextView.text.toString()
                         .toDouble()).toString()
-            "-" ->
+            OPERATION_MINUS ->
                 operationTextView.text =
                     (operationTextView.text.toString().toDouble() - resultTextView.text.toString()
                         .toDouble()).toString()
-            "+" ->
+            OPERATION_PLUS ->
                 operationTextView.text =
                     (operationTextView.text.toString().toDouble() + resultTextView.text.toString()
                         .toDouble()).toString()
